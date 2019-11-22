@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>First AngularJS</title>
+        <script type='text/javascript'
+        src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js'></script>
+    </head>
+<body>
+    <div ng-app="myApp" ng-controller="toDosController">
+        <button ng-click="getData()">Get Data</button>
+        <table>
+            <tr>
+                <th>User Id</th><th>Id</th><th>Title</th><th>Completed</th>
+            </tr>
+            <tr ng-repeat="toDo in toDos">
+                <td>{{toDo.userId}}</td>
+                <td>{{toDo.id}}</td>
+                <td>{{toDo.title }}</td>
+                <td>{{toDo.completed}}</td>
+            </tr>
+        </table>
+    </div>
+<script type='text/javascript'>
+var apiUrl = "https://jsonplaceholder.typicode.com/todos";
+    var thisApp = angular.module("myApp",[]);
+    var myCtrlr = thisApp.controller("toDosController",function($scope,$http){
+        $scope.toDos = [];
+        $scope.getData = function(){
+            $http.get(apiUrl)
+            .then(function(response){
+                $scope.toDos = response.data;
+                console.log($scope.toDos);
+            })
+        }
+
+
+    })
+
+</script>
+</body>
+</html>

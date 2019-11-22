@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>First AngularJS</title>
+        <script type='text/javascript'
+        src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js'></script>
+    </head>
+<body>
+    <div ng-app="myApp" ng-controller="calcController">
+            Num X :<input type='number' ng-model="numX" ng-change='calculate()'/> <br/>
+            Num Y : <input type='number' ng-model="numY" ng-change='calculate()'/><br/>
+            <button ng-click="calculate()">Calculate</button>
+            Sum : <b>{{sum}}</b><br/>
+            Difference : <b>{{difference}}</b><br/>
+            Product : <b>{{product}}</b><br/>
+            Division : <b>{{division}}</b><br/>
+    </div>
+    <script type='text/javascript'>
+    var thisApp = angular.module("myApp",[]);
+    var thisController = thisApp.controller("calcController",function($scope){
+        $scope.numX = 20;
+        $scope.numY = 20.32;
+        $scope.calculate = function(){
+            $scope.sum = $scope.numX + $scope.numY;
+            $scope.difference = $scope.numX - $scope.numY;
+            $scope.product = $scope.numX * $scope.numY;
+            $scope.division = $scope.numX / $scope.numY;
+
+        }
+
+    });
+
+    
+    </script>
+</body>
+</html>
